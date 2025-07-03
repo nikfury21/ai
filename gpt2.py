@@ -960,7 +960,7 @@ def main():
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), check_game_message))  # game first
 
     # ✅ Correct indentation here:
-    app.job_queue.run_once(lambda ctx: asyncio.create_task(send_random_auto_messages(app)), 1)
+    app.post_init = lambda _: asyncio.create_task(send_random_auto_messages(app))
 
     print("📡 Running polling...")
     app.run_polling()
