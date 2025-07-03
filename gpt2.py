@@ -961,11 +961,11 @@ def main():
 
     # ✅ Correct indentation here:
     async def schedule_jobs(app):
-    app.job_queue.run_repeating(
-        lambda ctx: asyncio.create_task(send_random_auto_messages(app)),
-        interval=7200,
-        first=10
-    )
+        app.job_queue.run_repeating(
+            lambda ctx: asyncio.create_task(send_random_auto_messages(app)),
+            interval=7200,
+            first=10
+        )
 
 app.post_init = schedule_jobs
 
