@@ -20,6 +20,7 @@ import os
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+client = Client(api_key=GROQ_API_KEY)
 STABILITY_API_KEY = os.getenv("STABILITY_API_KEY")
 OPENWEATHERMAP_API_KEY = os.getenv("OPENWEATHERMAP_API_KEY")
 
