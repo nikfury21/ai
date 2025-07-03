@@ -959,7 +959,8 @@ def main():
     app.add_error_handler(error_handler)
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), check_game_message))  # game first
 
-    # ✅ Correct indentation here:
+
+    # ✅ Safe job scheduler after app starts
     async def schedule_jobs(app):
         app.job_queue.run_repeating(
             lambda ctx: asyncio.create_task(send_random_auto_messages(app)),
@@ -967,16 +968,9 @@ def main():
             first=10
         )
 
-app.post_init = schedule_jobs
-
-
+    app.post_init = schedule_jobs
 
     print("📡 Running polling...")
     app.run_polling()
 
-
-
-if __name__ == "__main__":
-    print("🔧 Script running...")
-    main()
 
