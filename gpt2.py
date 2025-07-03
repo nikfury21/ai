@@ -18,15 +18,10 @@ import shutil
 
 import os
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-if not GROQ_API_KEY:
-    raise RuntimeError("❌ Missing GROQ_API_KEY environment variable!")
-client = Client(api_key=GROQ_API_KEY)
-STABILITY_API_KEY = os.getenv("STABILITY_API_KEY")
-OPENWEATHERMAP_API_KEY = os.getenv("OPENWEATHERMAP_API_KEY")
-
-
+BOT_TOKEN = "7830791268:AAGYqy1LbkM1RIMyw0O2yRej95xGjAFzQYo"
+STABILITY_API_KEY = "sk-NC4f2zqPMmFQqj8xjsOT1fqrDS4ucGOeyFi5f5c48K2Dc92G"
+GROQ_API_KEY = "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"
+OPENWEATHERMAP_API_KEY = "06c30afec35a845de9893364edb3e69c"
 client = Client(api_key=GROQ_API_KEY)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
