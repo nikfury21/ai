@@ -1,0 +1,8 @@
+python-telegram-bot==20.3
+wikipedia
+duckduckgo-search
+gTTS
+requests
+groq
+yt-dlp
+aiohttp

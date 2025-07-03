@@ -1,0 +1,16 @@
+name: nikfury21
+github: nikfury21
+language: "python"
+python_version: "3.10"
+
+commands:
+  build:
+    - "pip install -r requirements.txt"
+  start:
+    - "python3 bot.py"
+
+env:
+  - "BOT_TOKEN=7830791268:AAGYqy1LbkM1RIMyw0O2yRej95xGjAFzQYo"
+  - "GROQ_API_KEY=sk-NC4f2zqPMmFQqj8xjsOT1fqrDS4ucGOeyFi5f5c48K2Dc92G"
+  - "STABILITY_API_KEY=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"
+  - "OPENWEATHERMAP_API_KEY=06c30afec35a845de9893364edb3e69c"
