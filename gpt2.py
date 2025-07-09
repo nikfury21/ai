@@ -448,7 +448,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # 🧠 Call GROQ (LLaMA3)
     try:
         # Set reply length based on mode
-        if mode in ["normal", "bff", "gf", "sweet"]:
+        if mode in ["normal"]:
             max_tokens = 150  # Short, casual replies for emotional modes
         else:
             max_tokens = 512  # Full-length for serious modes
