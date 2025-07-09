@@ -447,12 +447,20 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # 🧠 Call GROQ (LLaMA3)
     try:
+        # Set reply length based on mode
+        if mode in ["normal", "bff", "gf", "sweet"]:
+            max_tokens = 150  # Short, casual replies for emotional modes
+        else:
+            max_tokens = 512  # Full-length for serious modes
+
+        # Make the API call
         res = client.chat.completions.create(
             model="llama3-70b-8192",
             messages=[{"role": "user", "content": full_prompt}],
             temperature=0.7,
-            max_tokens=512,
+            max_tokens=max_tokens,
         )
+
         reply = res.choices[0].message.content.strip()
 
         # Save bot reply too
