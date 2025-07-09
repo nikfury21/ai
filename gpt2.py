@@ -72,6 +72,7 @@ Response Style:
 - Mix short & long messages
 - Use actions (*giggles*, *pouts*, etc.)
 - Sound like a real teen BFF, not a robot
+Keep your responses short and casual — like you're texting a bestie. No long essays.
 """
     },
     "toxic": {
