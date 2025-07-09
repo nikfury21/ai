@@ -438,10 +438,16 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         pref_context += "The user dislikes: " + ", ".join(dislikes) + ". "
 
     # Final prompt
-    if lang == "hindi":
+    if mode == "normal":
+        # Always reply in English in normal mode
+        prompt = f"{mood_note}\n{pref_context}\n{MODES[mode]['prompt']} Respond ONLY in natural, casual English, no matter what language the user uses."
+    elif lang == "hindi":
+        # Hindi response for all other modes if user types in Hindi
         prompt = f"{mood_note}\n{pref_context}\n{MODES[mode]['prompt']} Respond ONLY in Hindi written in Latin script using natural conversational transliteration."
     else:
+        # Default behavior
         prompt = f"{mood_note}\n{pref_context}\n{MODES[mode]['prompt']}"
+
 
     full_prompt = f"{prompt}\n\n" + "\n".join(memory) + f"\nAssistant ({lang}):"
 
