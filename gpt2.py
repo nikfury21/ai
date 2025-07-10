@@ -343,24 +343,19 @@ async def getsong_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             'quiet': True,
             'default_search': 'ytsearch1',
             'outtmpl': os.path.join(temp_dir, '%(title)s.%(ext)s'),
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '192',
-            }],
         }
 
         with YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(query, download=True)
             title = info.get('title', query)
 
-        # Find the generated .mp3 file in temp_dir
+        # Find the downloaded file
         for fname in os.listdir(temp_dir):
-            if fname.endswith('.mp3'):
+            if fname.endswith(('.webm', '.m4a')):
                 filepath = os.path.join(temp_dir, fname)
                 break
         else:
-            raise FileNotFoundError("MP3 file not found after download.")
+            raise FileNotFoundError("Audio file not found after download.")
 
         await update.message.reply_audio(
             audio=open(filepath, 'rb'),
@@ -374,6 +369,7 @@ async def getsong_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         logger.error(f"Song download error: {e}")
         await update.message.reply_text("❌ Failed to download the song. Try a different name.")
+
 
 
 
