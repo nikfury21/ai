@@ -6,3 +6,5 @@ requests
 groq
 yt-dlp
 aiohttp
+ffmpeg-python
+
