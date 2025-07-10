@@ -27,6 +27,7 @@ OPENWEATHERMAP_API_KEY = "06c30afec35a845de9893364edb3e69c"
 client = Client(api_key=GROQ_API_KEY)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+bot_start_time = datetime.now()
 
 MODES = {
     "ai": {
@@ -92,7 +93,7 @@ Keep your responses short and casual — like you're texting a bestie. No long e
 
 global_mode = "normal"
 user_memory = {}
-AUTO_GROUPS = [-1001971622610, -1001624708464, -1001883526636]  # Replace with your two group chat IDs
+AUTO_GROUPS = [-1001971622610, -1001624708464, -1001883526636, -1002348716237]  # Replace with your two group chat IDs
 auto_chat_enabled = {str(chat_id): False for chat_id in AUTO_GROUPS}
 # 🌐 Global domain tracking for Akinator
 character_domains = {}  # chat_id -> selected domain
@@ -509,13 +510,6 @@ async def voice_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("❌ Voice generation failed.") 
 
 
-
-async def ping_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    start = time.time()
-    msg = await update.message.reply_text("🏓 Pong...")
-    end = time.time()
-    latency = end - start
-    await msg.edit_text(f"🏓 Pong! `{latency:.2f} seconds`", parse_mode="Markdown")
 
 
 
@@ -1026,6 +1020,27 @@ async def check_game_message(update: Update, context: ContextTypes.DEFAULT_TYPE)
             del active_games[chat_id]
         else:
             await update.message.reply_text("❌ Nope, thik se dimaag lga!")
+
+async def ping_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    start = time.time()
+    msg = await update.message.reply_text("📡 <i>Running diagnostics...</i>", parse_mode="HTML")
+    end = time.time()
+
+    latency = end - start
+    uptime = datetime.now() - bot_start_time
+
+    days = uptime.days
+    hours, remainder = divmod(uptime.seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+
+    await msg.edit_text(
+        "<b>🧪 SYSTEM STATUS</b>\n\n"
+        "╔══════════════════════╗\n"
+        f"📶 <b>Latency</b>: <code>{latency:.2f} sec</code>\n"
+        f"⏱️ <b>Uptime</b>: <code>{days}d {hours}h {minutes}m {seconds}s</code>\n"
+        "╚══════════════════════╝",
+        parse_mode="HTML"
+    )
 
 
 
