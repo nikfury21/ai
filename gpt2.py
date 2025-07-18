@@ -19,7 +19,7 @@ import shutil
 import os
 
 BOT_TOKEN = "7969918225:AAGJX21dWu0Vv6t2jTs2R4fq2mh7eqP7_2M"
-GROQ_API_KEY = "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"
+GROQ_API_KEY = "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"
 STABILITY_API_KEY = "sk-NC4f2zqPMmFQqj8xjsOT1fqrDS4ucGOeyFi5f5c48K2Dc92G"
 OPENWEATHERMAP_API_KEY = "06c30afec35a845de9893364edb3e69c"
 
@@ -322,10 +322,6 @@ async def modetype(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(f"🌐 Global mode changed to *{mode.upper()}* for everyone!", parse_mode="Markdown")
 
 
-async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    print("🔥 Message triggered:", update.message.text)
-
-
 
 
 async def getsong_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -377,6 +373,7 @@ async def getsong_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    global global_mode
     if update.message.chat.type != "private":
         if not (update.message.reply_to_message and update.message.reply_to_message.from_user.id == context.bot.id) and f"@{context.bot.username.lower()}" not in update.message.text.lower():
             return
