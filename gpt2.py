@@ -92,7 +92,7 @@ Keep your responses short and casual — like you're texting a friend. No long e
 
 global_mode = "normal"
 user_memory = {}
-AUTO_GROUPS = [-1001971622610, -1001624708464, -1001883526636, -1002348716237]  # Replace with your two group chat IDs
+AUTO_GROUPS = [-1001971622610, -1001624708464, -1001883526636, -1002348716237, -1002899517226]  # Replace with your two group chat IDs
 auto_chat_enabled = {str(chat_id): False for chat_id in AUTO_GROUPS}
 # 🌐 Global domain tracking for Akinator
 character_domains = {}  # chat_id -> selected domain
